@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RYNS — Premium Clothing, Varanasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ── */
+:root{
+  --white:#fafaf8;
+  --off:#f2ede4;
+  --ink:#111210;
+  --mid:#5a5650;
+  --gold:#b8922a;
+  --gold-lt:#d4b060;
+  --rust:#c04a28;
+  --border:#e2ddd4;
+  --ig-grad:linear-gradient(135deg,#833ab4 0%,#fd1d1d 50%,#fcb045 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--white);color:var(--ink);
+  font-family:'Outfit',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cur{
+  width:12px;height:12px;background:var(--ink);border-radius:50%;
+  position:fixed;pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);transition:transform .08s,width .2s,height .2s,background .2s;
+}
+#cur-ring{
+  width:36px;height:36px;border:1px solid rgba(17,18,16,.3);border-radius:50%;
+  position:fixed;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);transition:transform .18s ease-out,width .2s,height .2s;
+}
+body:hover #cur{transform:translate(-50%,-50%) scale(1)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3.5rem;
+  background:rgba(250,250,248,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;font-size:1.55rem;
+  font-weight:900;letter-spacing:.08em;color:var(--ink);text-decoration:none;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:.75rem;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--mid);text-decoration:none;
+  transition:color .2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-ig-btn{
+  display:flex;align-items:center;gap:.5rem;
+  background:var(--ig-grad);
+  color:#fff;padding:.42rem 1.1rem;border-radius:30px;
+  font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  text-decoration:none;transition:opacity .2s,transform .2s;
+}
+.nav-ig-btn:hover{opacity:.88;transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:grid;
+  grid-template-columns:55% 45%;
+  padding-top:5rem;
+  position:relative;overflow:hidden;
+}
+/* left */
+.hero-l{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:4rem 4rem 4rem 5rem;
+  position:relative;z-index:2;
+}
+.hero-chip{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:var(--off);border:1px solid var(--border);
+  padding:.38rem 1rem;border-radius:30px;width:fit-content;
+  font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);
+  margin-bottom:2rem;
+}
+.hero-chip-dot{width:6px;height:6px;border-radius:50%;background:#2ecc71;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+h1.hero-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3.5rem,7vw,7rem);
+  font-weight:900;line-height:.95;
+  color:var(--ink);margin-bottom:1rem;
+  animation:slideUp .8s .1s both;
+}
+h1.hero-title em{
+  font-style:italic;color:var(--gold);
+  display:block;font-weight:400;
+}
+.hero-sub{
+  font-size:1rem;color:var(--mid);line-height:1.75;
+  max-width:380px;margin-bottom:2.5rem;font-weight:300;
+  animation:slideUp .8s .2s both;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:slideUp .8s .3s both}
+
+/* ── BUTTONS ── */
+.btn{
+  padding:.85rem 2rem;font-size:.76rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:none;
+  display:inline-block;font-family:'Outfit',sans-serif;
+  transition:transform .2s,box-shadow .2s;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-dark{
+  background:var(--ink);color:var(--white);
+  box-shadow:0 8px 24px rgba(17,18,16,.15);
+}
+.btn-dark:hover{box-shadow:0 16px 40px rgba(17,18,16,.25)}
+.btn-out{
+  background:transparent;color:var(--ink);
+  border:1.5px solid var(--ink);
+}
+.btn-out:hover{background:var(--ink);color:var(--white)}
+.btn-ig-big{
+  background:var(--ig-grad);color:#fff;
+  box-shadow:0 8px 24px rgba(131,58,180,.2);
+}
+.btn-ig-big:hover{box-shadow:0 16px 40px rgba(131,58,180,.35)}
+
+.hero-nums{
+  display:flex;gap:2.5rem;margin-top:3rem;
+  padding-top:2.5rem;border-top:1px solid var(--border);
+  animation:slideUp .8s .4s both;
+}
+.num-v{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink)}
+.num-l{font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-top:.2rem}
+
+/* hero right — video + 3D shirt */
+.hero-r{
+  position:relative;overflow:hidden;
+  background:var(--off);
+}
+.hero-video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.hero-r-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to right,rgba(250,250,248,.18) 0%,transparent 40%);
+  pointer-events:none;
+}
+/* Floating label on video */
+.vid-label{
+  position:absolute;bottom:2rem;left:2rem;
+  background:rgba(250,250,248,.92);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--border);
+  padding:1rem 1.4rem;
+}
+.vid-label-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink)}
+.vid-label-sub{font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-top:.2rem}
+.vid-ig-tag{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:var(--ig-grad);color:#fff;
+  padding:.4rem .9rem;border-radius:20px;
+  font-size:.67rem;font-weight:700;letter-spacing:.07em;
+}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── MARQUEE ── */
+.ticker{
+  background:var(--ink);padding:.6rem 0;overflow:hidden;
+  position:relative;z-index:2;
+}
+.ticker-track{
+  display:flex;gap:3rem;white-space:nowrap;
+  animation:tickerMove 22s linear infinite;
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1rem;color:rgba(255,255,255,.55);letter-spacing:.04em;
+}
+.ticker-track b{color:var(--gold-lt);font-style:normal;font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+@keyframes tickerMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SECTION WRAP ── */
+.wrap{padding:7rem 5rem;position:relative}
+.s-tag{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:1rem;
+}
+.s-tag::before{content:'';width:24px;height:1px;background:var(--gold)}
+h2.s-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3.5rem);font-weight:700;line-height:1.1;
+  color:var(--ink);margin-bottom:.8rem;
+}
+h2.s-title em{font-style:italic;color:var(--gold);font-weight:400}
+
+/* ── COLLECTION GRID ── */
+.collection-section{background:var(--off)}
+.collection-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-top:3rem;
+  perspective:1200px;
+}
+/* 3D product card */
+.prod-card{
+  position:relative;cursor:none;
+  transform-style:preserve-3d;
+  transition:transform .4s cubic-bezier(.25,.46,.45,.94),box-shadow .4s;
+  background:var(--white);
+  border:1px solid var(--border);
+  overflow:hidden;
+}
+.prod-card:hover{
+  transform:perspective(800px) rotateX(4deg) rotateY(-4deg) translateY(-10px);
+  box-shadow:20px 30px 60px rgba(17,18,16,.12),0 2px 8px rgba(17,18,16,.06);
+}
+.prod-img{
+  height:280px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+/* CSS T-shirt shape */
+.tshirt{
+  position:relative;width:140px;
+  transition:transform .4s;
+}
+.prod-card:hover .tshirt{transform:scale(1.05) translateZ(20px)}
+.tshirt svg{width:100%;height:auto;filter:drop-shadow(0 12px 24px rgba(0,0,0,.12))}
+.prod-card:hover .tshirt svg{filter:drop-shadow(0 20px 40px rgba(0,0,0,.18))}
+.prod-badge{
+  position:absolute;top:.9rem;left:.9rem;
+  background:var(--ink);color:var(--white);
+  font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  padding:.28rem .65rem;
+}
+.prod-badge.gold{background:var(--gold)}
+.prod-info{padding:1.3rem 1.5rem 1.6rem}
+.prod-cat{font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+.prod-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);margin:.3rem 0 .6rem}
+.prod-desc{font-size:.78rem;color:var(--mid);line-height:1.6;font-weight:300}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1rem}
+.prod-sizes{display:flex;gap:.35rem}
+.sz{
+  width:26px;height:26px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.6rem;font-weight:600;color:var(--mid);
+  cursor:none;transition:all .15s;
+}
+.sz:hover,.sz.act{background:var(--ink);border-color:var(--ink);color:#fff}
+.prod-arrow{
+  width:38px;height:38px;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.9rem;cursor:none;
+  transition:background .2s,transform .2s;
+}
+.prod-card:hover .prod-arrow{background:var(--gold);transform:rotate(-45deg)}
+
+/* ── BRAND VIDEO SECTION ── */
+.video-section{background:var(--ink)}
+.video-inner{display:grid;grid-template-columns:1fr 1.6fr;min-height:520px}
+.video-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem;color:var(--white);
+}
+.video-text .s-tag{color:var(--gold-lt)}
+.video-text .s-tag::before{background:var(--gold-lt)}
+.video-text h2{color:var(--white)}
+.video-text p{font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.8;font-weight:300;margin:1rem 0 2rem;max-width:320px}
+.video-frame{
+  position:relative;overflow:hidden;
+}
+.brand-vid{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
+.vid-controls{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.2);
+  opacity:0;transition:opacity .3s;
+}
+.video-frame:hover .vid-controls{opacity:1}
+.play-circle{
+  width:64px;height:64px;border:2px solid rgba(255,255,255,.6);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:#fff;cursor:none;
+  transition:background .2s,transform .2s;
+}
+.play-circle:hover{background:rgba(255,255,255,.15);transform:scale(1.1)}
+
+/* ── INSTAGRAM ── */
+.ig-section{background:var(--white)}
+.ig-head{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:2rem;margin-bottom:3rem;
+}
+.ig-profile{
+  display:flex;align-items:center;gap:1.5rem;
+}
+.ig-ava{
+  width:72px;height:72px;border-radius:50%;
+  padding:2.5px;
+  background:var(--ig-grad);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ig-ava-inner{
+  width:100%;height:100%;border-radius:50%;
+  background:var(--white);display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;
+}
+.ig-user-name{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--ink)}
+.ig-handle{
+  font-size:.78rem;font-weight:600;letter-spacing:.06em;
+  background:var(--ig-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.ig-bio{font-size:.78rem;color:var(--mid);line-height:1.6;margin-top:.35rem;max-width:260px}
+
+/* IG post grid — fashion magazine style */
+.ig-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:220px 220px;
+  gap:6px;
+}
+.ig-post{
+  position:relative;overflow:hidden;
+  text-decoration:none;cursor:none;
+  display:block;
+}
+.ig-post:first-child{grid-column:span 2;grid-row:span 2}
+.ig-post-bg{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3.5rem;
+  transition:transform .5s cubic-bezier(.25,.46,.45,.94);
+}
+.ig-post:first-child .ig-post-bg{font-size:6rem}
+.ig-post:hover .ig-post-bg{transform:scale(1.06)}
+.ig-post-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(17,18,16,.75) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1rem;
+  opacity:0;transition:opacity .3s;
+}
+.ig-post:hover .ig-post-overlay{opacity:1}
+.ig-post-tag{font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt)}
+.ig-post-cap{font-family:'Playfair Display',serif;font-size:.9rem;font-style:italic;color:#fff;margin-top:.15rem}
+/* color themes for posts */
+.c1{background:#f0e8d8}.c2{background:#dde8f0}.c3{background:#e8f0dd}.c4{background:#f0dde8}.c5{background:#f0eadd}.c6{background:#dde8f0}.c7{background:#e8ddf0}
+
+.ig-cta{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;flex-wrap:wrap}
+.ig-note{font-size:.78rem;color:var(--mid);font-weight:300}
+
+/* ── REVIEWS ── */
+.reviews-section{background:var(--off)}
+.rev-header{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:2rem;margin-bottom:3rem}
+.big-score{
+  font-family:'Playfair Display',serif;
+  font-size:6rem;font-weight:900;line-height:1;color:var(--ink);
+}
+.big-score span{color:var(--gold)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;perspective:1000px}
+.rev-card{
+  background:var(--white);border:1px solid var(--border);
+  padding:1.8rem;position:relative;
+  transition:transform .35s cubic-bezier(.25,.46,.45,.94),box-shadow .35s;
+  transform-style:preserve-3d;
+}
+.rev-card:hover{
+  transform:perspective(800px) rotateX(3deg) rotateY(-3deg) translateY(-8px);
+  box-shadow:12px 20px 40px rgba(17,18,16,.1);
+}
+.rev-stars{color:var(--gold);font-size:.88rem;letter-spacing:.05em;margin-bottom:.9rem}
+.rev-q{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--border);line-height:.4;display:block;margin-bottom:.5rem}
+.rev-text{font-size:.84rem;color:var(--mid);line-height:1.75;font-weight:300}
+.rev-author{display:flex;align-items:center;gap:.8rem;margin-top:1.2rem;padding-top:1.2rem;border-top:1px solid var(--border)}
+.rev-ava{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--ink);display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:700;color:var(--white);flex-shrink:0;
+}
+.rev-name{font-size:.8rem;font-weight:600;color:var(--ink)}
+.rev-via{font-size:.65rem;color:var(--mid);margin-top:.1rem}
+
+/* Review form */
+.rev-form{
+  margin-top:2.5rem;background:var(--white);border:1px solid var(--border);
+  padding:2.5rem;
+}
+.finp{
+  width:100%;background:var(--off);border:1.5px solid var(--border);
+  color:var(--ink);padding:.8rem 1.1rem;
+  font-family:'Outfit',sans-serif;font-size:.85rem;outline:none;
+  transition:border-color .2s;
+}
+.finp::placeholder{color:rgba(90,86,80,.45)}
+.finp:focus{border-color:var(--gold)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.star-pick-row{
+  display:flex;align-items:center;gap:.4rem;
+  background:var(--off);border:1.5px solid var(--border);padding:.6rem 1.1rem;
+}
+.sp{font-size:1.4rem;cursor:none;opacity:.25;color:var(--ink);transition:.15s}
+.sp.on{opacity:1;color:var(--gold)}
+
+/* ── STORE INFO ── */
+.store-section{background:var(--white)}
+.store-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3rem;align-items:start}
+.hours-list{}
+.h-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.85rem 0;border-bottom:1px solid var(--border);font-size:.85rem;
+}
+.h-day{color:var(--mid);font-weight:400}
+.h-time{color:var(--ink);font-weight:600}
+.h-closed{color:var(--rust);font-weight:500}
+.h-today{
+  background:linear-gradient(to right,rgba(184,146,42,.06),transparent);
+  padding:.85rem .6rem;margin:0 -.6rem;
+  border-bottom:1px solid rgba(184,146,42,.2);
+}
+.today-pill{
+  background:var(--gold);color:#fff;
+  font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.14rem .5rem;border-radius:2px;margin-left:.5rem;
+}
+.contact-list{}
+.c-row{display:flex;gap:1.2rem;padding:1rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.c-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
+.c-lbl{font-size:.63rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mid)}
+.c-val{font-size:.88rem;font-weight:500;color:var(--ink);margin-top:.2rem}
+.c-val a{color:var(--ink);text-decoration:none;transition:color .2s}
+.c-val a:hover{color:var(--gold)}
+
+/* ── MAP ── */
+.map-section{position:relative}
+.map-top{
+  padding:4rem 5rem 2rem;
+  display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+  background:var(--ink);
+}
+.map-top .s-tag{color:var(--gold-lt)}
+.map-top .s-tag::before{background:var(--gold-lt)}
+.map-top h2{color:var(--white)}
+.map-link{
+  border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);
+  padding:.65rem 1.4rem;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;transition:all .2s;display:inline-block;
+}
+.map-link:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.map-frame{
+  position:relative;height:420px;
+}
+.map-frame iframe{width:100%;height:100%;border:none;display:block;filter:grayscale(20%) contrast(1.05)}
+.map-card{
+  position:absolute;top:1.5rem;left:2rem;z-index:5;
+  background:rgba(250,250,248,.96);backdrop-filter:blur(12px);
+  border:1px solid var(--border);padding:1.4rem 1.8rem;min-width:240px;
+  box-shadow:0 8px 30px rgba(17,18,16,.12);
+}
+.mc-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink)}
+.mc-addr{font-size:.72rem;color:var(--mid);line-height:1.6;margin-top:.3rem}
+.mc-rating{display:flex;align-items:center;gap:.4rem;margin-top:.7rem;font-size:.78rem;color:var(--gold);font-weight:600}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);color:var(--white);
+  padding:5rem 5rem 2.5rem;
+}
+.foot-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:4rem;padding-bottom:4rem;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.f-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--white);margin-bottom:.8rem}
+.f-brand span{color:var(--gold)}
+.f-tag{font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.85;max-width:240px;font-weight:300}
+.f-soc{display:flex;gap:.6rem;margin-top:1.5rem}
+.f-sb{
+  width:38px;height:38px;border:1px solid rgba(255,255,255,.1);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;text-decoration:none;cursor:none;
+  transition:border-color .2s,transform .2s;
+}
+.f-sb:hover{border-color:var(--gold);transform:translateY(-3px)}
+.f-sb.f-ig:hover{background:var(--ig-grad);border-color:transparent}
+.f-col-t{font-size:.65rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.f-links a{font-size:.8rem;color:rgba(255,255,255,.32);text-decoration:none;transition:color .2s;font-weight:300}
+.f-links a:hover{color:var(--white)}
+.foot-bottom{
+  padding-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;
+  font-size:.7rem;color:rgba(255,255,255,.18);
+}
+.foot-bottom a{color:rgba(184,146,42,.5);text-decoration:none}
+
+/* ── SCROLL ANIM ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease}
+.reveal-l.in{opacity:1;transform:none}
+.reveal-r{opacity:0;transform:translateX(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal-r.in{opacity:1;transform:none}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--off)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:.9rem 1.5rem}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-r{height:55vw;min-height:280px}
+  .hero-l{padding:6rem 1.5rem 3rem}
+  .wrap{padding:4.5rem 1.5rem}
+  .collection-grid{grid-template-columns:1fr 1fr}
+  .video-inner{grid-template-columns:1fr}
+  .video-text{padding:3rem 1.5rem}
+  .video-frame{height:300px}
+  .ig-grid{grid-template-columns:repeat(3,1fr);grid-template-rows:auto}
+  .ig-post:first-child{grid-column:span 3;height:220px}
+  .rev-grid{grid-template-columns:1fr}
+  .store-grid{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .map-top{padding:3rem 1.5rem 1.5rem;flex-direction:column;align-items:flex-start}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- cursor -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#" class="nav-logo">RYNS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#video">Brand Film</a></li>
+    <li><a href="#instagram">Instagram</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#store">Store</a></li>
+  </ul>
+  <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="nav-ig-btn">📸 @ryns4u</a>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-l">
+    <div class="hero-chip"><span class="hero-chip-dot"></span>Now Open · Mon–Sat, 11–6 PM</div>
+    <h1 class="hero-title">
+      Wear it<br>
+      <em>your way.</em>
+    </h1>
+    <p class="hero-sub">Premium cotton tees &amp; custom prints crafted in Varanasi. Wholesale &amp; retail — quality for every occasion, style for every person.</p>
+    <div class="hero-actions">
+      <a href="#collection" class="btn btn-dark">Shop Collection</a>
+      <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="btn btn-ig-big">📸 @ryns4u</a>
+      <a href="#store" class="btn btn-out">Visit Store</a>
+    </div>
+    <div class="hero-nums">
+      <div><div class="num-v">4.7<span style="color:var(--gold);font-size:1.2rem">★</span></div><div class="num-l">Google Rating</div></div>
+      <div><div class="num-v">35+</div><div class="num-l">Reviews</div></div>
+      <div><div class="num-v">2019</div><div class="num-l">Est. Varanasi</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="ryns-brand.mp4" type="video/mp4"/>
+    </video>
+    <div class="hero-r-overlay"></div>
+    <div class="vid-ig-tag">📸 @ryns4u</div>
+    <div class="vid-label">
+      <div class="vid-label-title">RYNS Clothing</div>
+      <div class="vid-label-sub">Varanasi, UP · Est. 2019</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker">
+  <div class="ticker-track">
+    Premium Cotton <b>·</b> Custom Prints <b>·</b> Wholesale &amp; Retail <b>·</b> @ryns4u <b>·</b> Varanasi <b>·</b> 4.7★ Rated <b>·</b>
+    Premium Cotton <b>·</b> Custom Prints <b>·</b> Wholesale &amp; Retail <b>·</b> @ryns4u <b>·</b> Varanasi <b>·</b> 4.7★ Rated <b>·</b>
+    Premium Cotton <b>·</b> Custom Prints <b>·</b> Wholesale &amp; Retail <b>·</b> @ryns4u <b>·</b> Varanasi <b>·</b> 4.7★ Rated <b>·</b>
+  </div>
+</div>
+
+<!-- ══ COLLECTION ══ -->
+<section class="wrap collection-section" id="collection">
+  <div class="s-tag reveal">Our Products</div>
+  <h2 class="s-title reveal">The RYNS <em>Collection</em></h2>
+  <div class="collection-grid">
+
+    <!-- Card 1 -->
+    <div class="prod-card reveal">
+      <div class="prod-img" style="background:#f7f0e6">
+        <div class="tshirt">
+          <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 20 L20 55 L45 65 L40 200 L160 200 L155 65 L180 55 L140 20 Q120 35 100 35 Q80 35 60 20Z" fill="#2c2c2a" stroke="none"/>
+            <path d="M100 35 Q90 42 82 40 Q90 60 100 58 Q110 60 118 40 Q110 42 100 35Z" fill="#1a1a18"/>
+            <text x="100" y="130" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="28" font-family="serif" font-style="italic">RYNS</text>
+          </svg>
+        </div>
+        <div class="prod-badge">Bestseller</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">Classic Fit</div>
+        <div class="prod-name">Signature Tee — Onyx</div>
+        <div class="prod-desc">Soft 100% premium cotton. Easy wash. Relaxed everyday fit.</div>
+        <div class="prod-footer">
+          <div class="prod-sizes">
+            <div class="sz act">S</div><div class="sz">M</div><div class="sz">L</div><div class="sz">XL</div>
+          </div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="prod-card reveal">
+      <div class="prod-img" style="background:#e6f0f7">
+        <div class="tshirt">
+          <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 20 L20 55 L45 65 L40 200 L160 200 L155 65 L180 55 L140 20 Q120 35 100 35 Q80 35 60 20Z" fill="#4a7fa5" stroke="none"/>
+            <path d="M100 35 Q90 42 82 40 Q90 60 100 58 Q110 60 118 40 Q110 42 100 35Z" fill="#3a6f95"/>
+            <circle cx="100" cy="125" r="22" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+            <text x="100" y="131" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10" font-family="sans-serif" font-weight="bold" letter-spacing="2">RYNS</text>
+          </svg>
+        </div>
+        <div class="prod-badge gold">Custom Print</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">Custom Print</div>
+        <div class="prod-name">Logo Print Tee — Sky</div>
+        <div class="prod-desc">Sharp custom printing. Your logo, your brand, precision colour.</div>
+        <div class="prod-footer">
+          <div class="prod-sizes">
+            <div class="sz">S</div><div class="sz act">M</div><div class="sz">L</div><div class="sz">XL</div>
+          </div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="prod-card reveal">
+      <div class="prod-img" style="background:#f0e6ee">
+        <div class="tshirt">
+          <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 20 L20 55 L45 65 L40 200 L160 200 L155 65 L180 55 L140 20 Q120 35 100 35 Q80 35 60 20Z" fill="#c04a80" stroke="none"/>
+            <path d="M100 35 Q90 42 82 40 Q90 60 100 58 Q110 60 118 40 Q110 42 100 35Z" fill="#a03a70"/>
+            <path d="M75 105 Q100 95 125 105 Q100 145 75 105Z" fill="rgba(255,255,255,0.15)"/>
+          </svg>
+        </div>
+        <div class="prod-badge">New Drop</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">Trendy Edit</div>
+        <div class="prod-name">Relaxed Tee — Rose</div>
+        <div class="prod-desc">This season's colour. Classy, clean and comfortable every day.</div>
+        <div class="prod-footer">
+          <div class="prod-sizes">
+            <div class="sz">S</div><div class="sz">M</div><div class="sz act">L</div><div class="sz">XL</div>
+          </div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 — Wholesale CTA -->
+    <div class="prod-card reveal" style="background:var(--ink);border-color:transparent">
+      <div class="prod-img" style="background:#1a1a18;height:280px;flex-direction:column;gap:1rem">
+        <div style="font-size:3.5rem;filter:drop-shadow(0 8px 20px rgba(184,146,42,.4))">📦</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--white);text-align:center;line-height:1.2">Bulk &amp;<br>Wholesale</div>
+        <div style="font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35)">100+ pieces</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat" style="color:var(--gold)">Wholesale</div>
+        <div class="prod-name" style="color:var(--white)">Bulk Orders</div>
+        <div class="prod-desc" style="color:rgba(255,255,255,.4)">Special rates for bulk orders. Call us or DM on Instagram for quotes.</div>
+        <div class="prod-footer">
+          <a href="tel:+918177097151" style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-decoration:none">📞 Call for Quote</a>
+          <div class="prod-arrow" style="background:var(--gold)">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="prod-card reveal">
+      <div class="prod-img" style="background:#e6f7ee">
+        <div class="tshirt">
+          <svg viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 20 L20 55 L45 65 L40 200 L160 200 L155 65 L180 55 L140 20 Q120 35 100 35 Q80 35 60 20Z" fill="#2d7a50" stroke="none"/>
+            <path d="M100 35 Q90 42 82 40 Q90 60 100 58 Q110 60 118 40 Q110 42 100 35Z" fill="#1d6a40"/>
+            <path d="M80 110 L100 100 L120 110 L115 140 L85 140Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">Seasonal Drop</div>
+        <div class="prod-name">Fresh Cut Tee — Moss</div>
+        <div class="prod-desc">Earth-toned, premium cotton. Perfect for a clean casual look.</div>
+        <div class="prod-footer">
+          <div class="prod-sizes">
+            <div class="sz">S</div><div class="sz">M</div><div class="sz act">L</div><div class="sz">XL</div>
+          </div>
+          <div class="prod-arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 6 — Instagram CTA -->
+    <div class="prod-card reveal" style="border:2px solid transparent;background:linear-gradient(var(--white),var(--white)) padding-box,var(--ig-grad) border-box;overflow:visible">
+      <div class="prod-img" style="background:linear-gradient(135deg,#f5e8fc,#fce8e8,#fcf4e8);height:280px;flex-direction:column;gap:.8rem">
+        <div style="font-size:3.5rem">📸</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink);text-align:center">Follow<br>@ryns4u</div>
+        <div style="font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--ig-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">On Instagram</div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat" style="background:var(--ig-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Instagram</div>
+        <div class="prod-name">New Drops Daily</div>
+        <div class="prod-desc">Follow @ryns4u for daily uploads, reels, behind-the-scenes and exclusive drops.</div>
+        <div class="prod-footer">
+          <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" style="font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;background:var(--ig-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">📸 Follow Now</a>
+          <div class="prod-arrow" style="background:var(--ig-grad)">→</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BRAND VIDEO ══ -->
+<div class="video-section" id="video">
+  <div class="video-inner">
+    <div class="video-text reveal-l">
+      <div class="s-tag">Brand Film</div>
+      <h2 class="s-title" style="color:var(--white)">The <em>RYNS</em><br>Story</h2>
+      <p>From the heart of Varanasi's textile tradition — see how RYNS Clothing brings premium quality and modern style together in every stitch.</p>
+      <div style="display:flex;flex-direction:column;gap:.8rem">
+        <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="btn btn-ig-big" style="width:fit-content">📸 Follow @ryns4u</a>
+        <a href="tel:+918177097151" class="btn btn-out" style="width:fit-content;border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.7)">📞 +91 81770 97151</a>
+      </div>
+    </div>
+    <div class="video-frame reveal-r">
+      <video class="brand-vid" id="mainVid" controls>
+        <source src="ryns-brand.mp4" type="video/mp4"/>
+      </video>
+      <div class="vid-controls">
+        <div class="play-circle" onclick="toggleVid()">▶</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INSTAGRAM ══ -->
+<section class="wrap ig-section" id="instagram">
+  <div class="ig-head">
+    <div class="ig-profile">
+      <div class="ig-ava"><div class="ig-ava-inner">👕</div></div>
+      <div>
+        <div class="ig-user-name">RYNS Clothing</div>
+        <div class="ig-handle">@ryns4u</div>
+        <div class="ig-bio">Premium cotton tees · Custom prints · Varanasi 🇮🇳<br>Wholesale &amp; Retail · DM for orders</div>
+      </div>
+    </div>
+    <div>
+      <div class="s-tag reveal">Social</div>
+      <h2 class="s-title reveal" style="margin:0">Find us on <em>Instagram</em></h2>
+    </div>
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="btn btn-ig-big">📸 Follow @ryns4u</a>
+  </div>
+
+  <!-- IG post grid -->
+  <div class="ig-grid reveal">
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="ig-post">
+      <div class="ig-post-bg c1" style="font-size:7rem">👕</div>
+      <div class="ig-post-overlay"><div class="ig-post-tag">Featured Drop</div><div class="ig-post-cap">The Signature Collection</div></div>
+    </a>
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="ig-post">
+      <div class="ig-post-bg c2">🎨</div>
+      <div class="ig-post-overlay"><div class="ig-post-tag">Custom Print</div><div class="ig-post-cap">Your Brand, Our Craft</div></div>
+    </a>
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="ig-post">
+      <div class="ig-post-bg c3">✨</div>
+      <div class="ig-post-overlay"><div class="ig-post-tag">New Season</div><div class="ig-post-cap">Fresh 2025 Drops</div></div>
+    </a>
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="ig-post">
+      <div class="ig-post-bg c4">🧵</div>
+      <div class="ig-post-overlay"><div class="ig-post-tag">Fabric</div><div class="ig-post-cap">Premium Cotton Quality</div></div>
+    </a>
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="ig-post">
+      <div class="ig-post-bg c5">📦</div>
+      <div class="ig-post-overlay"><div class="ig-post-tag">Wholesale</div><div class="ig-post-cap">Bulk Orders Ready</div></div>
+    </a>
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="ig-post">
+      <div class="ig-post-bg c6">🌟</div>
+      <div class="ig-post-overlay"><div class="ig-post-tag">Trending</div><div class="ig-post-cap">This Week's Picks</div></div>
+    </a>
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="ig-post">
+      <div class="ig-post-bg c7">🇮🇳</div>
+      <div class="ig-post-overlay"><div class="ig-post-tag">Varanasi</div><div class="ig-post-cap">Made in UP</div></div>
+    </a>
+  </div>
+
+  <div class="ig-cta reveal">
+    <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="btn btn-ig-big">📸 Open Instagram Profile →</a>
+    <div class="ig-note">See all posts, reels &amp; stories · Follow <strong>@ryns4u</strong> for daily updates</div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ══ -->
+<section class="wrap reviews-section" id="reviews">
+  <div class="rev-header">
+    <div>
+      <div class="s-tag reveal">Customer Voices</div>
+      <h2 class="s-title reveal">What they <em>say</em></h2>
+    </div>
+    <div class="reveal" style="text-align:right">
+      <div class="big-score">4.7<span>★</span></div>
+      <div style="font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--mid)">35 Google Reviews</div>
+    </div>
+  </div>
+  <div class="rev-grid" id="revGrid"></div>
+
+  <!-- Write review form -->
+  <div class="rev-form reveal" style="margin-top:2.5rem">
+    <div class="s-tag" style="margin-bottom:.5rem">Leave a Review</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;margin-bottom:1.5rem">Write a <em style="color:var(--gold)">review</em></h3>
+    <div class="frow">
+      <input class="finp" id="rName" placeholder="Your Name"/>
+      <div class="star-pick-row" id="starRow">
+        <span style="font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-right:.3rem">Rate:</span>
+        <span class="sp" data-v="1" onclick="setStar(1)">★</span>
+        <span class="sp" data-v="2" onclick="setStar(2)">★</span>
+        <span class="sp" data-v="3" onclick="setStar(3)">★</span>
+        <span class="sp" data-v="4" onclick="setStar(4)">★</span>
+        <span class="sp" data-v="5" onclick="setStar(5)">★</span>
+      </div>
+    </div>
+    <textarea class="finp" id="rText" rows="3" placeholder="Share your experience with RYNS Clothing..." style="resize:vertical;width:100%;margin-bottom:1rem"></textarea>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="btn btn-dark" onclick="submitReview()" style="font-family:'Outfit',sans-serif;cursor:none">Submit Review</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STORE INFO ══ -->
+<section class="wrap store-section" id="store">
+  <div class="s-tag reveal">Visit Us</div>
+  <h2 class="s-title reveal">The RYNS <em>Store</em></h2>
+  <div class="store-grid">
+    <div class="reveal-l">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:1.5rem">Opening Hours</h3>
+      <div class="hours-list">
+        <div class="h-row h-today"><span class="h-day">Wednesday<span class="today-pill">Today</span></span><span class="h-time">11:00 AM – 6:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Monday</span><span class="h-time">11:00 AM – 6:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Tuesday</span><span class="h-time">11:00 AM – 6:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Thursday</span><span class="h-time">11:00 AM – 6:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Friday</span><span class="h-time">11:00 AM – 6:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Saturday</span><span class="h-time">11:00 AM – 6:00 PM</span></div>
+        <div class="h-row"><span class="h-day">Sunday</span><span class="h-time h-closed">Closed</span></div>
+      </div>
+    </div>
+    <div class="reveal-r">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:1.5rem">Get in Touch</h3>
+      <div class="contact-list">
+        <div class="c-row"><div class="c-icon">📍</div><div><div class="c-lbl">Address</div><div class="c-val">J11l117 D-x Nai Basti, Ishwargangi,<br>Jaitpura, Varanasi, UP 221002</div></div></div>
+        <div class="c-row"><div class="c-icon">📞</div><div><div class="c-lbl">Phone</div><div class="c-val"><a href="tel:+918177097151">+91 81770 97151</a></div></div></div>
+        <div class="c-row"><div class="c-icon">📸</div><div><div class="c-lbl">Instagram</div><div class="c-val"><a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank">@ryns4u ↗</a></div></div></div>
+        <div class="c-row"><div class="c-icon">🗺️</div><div><div class="c-lbl">Google Maps</div><div class="c-val"><a href="https://maps.app.goo.gl/LyxThfH6MaF8bskQA" target="_blank">Find on Maps ↗</a></div></div></div>
+        <div class="c-row" style="border:none"><div class="c-icon">⭐</div><div><div class="c-lbl">Rating</div><div class="c-val">4.7 / 5 on Google · 35 reviews</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MAP ══ -->
+<div class="map-section" id="map">
+  <div class="map-top">
+    <div>
+      <div class="s-tag">Find Us</div>
+      <h2 class="s-title" style="margin:0">We're in <em>Varanasi</em></h2>
+    </div>
+    <a href="https://maps.app.goo.gl/LyxThfH6MaF8bskQA" target="_blank" class="map-link">Open in Google Maps ↗</a>
+  </div>
+  <div class="map-frame">
+    <div class="map-card">
+      <div class="mc-name">RYNS Clothing</div>
+      <div class="mc-addr">Jaitpura, Varanasi, UP 221002</div>
+      <div class="mc-rating">⭐ 4.7 <span style="color:var(--mid);font-weight:400">· 35 reviews</span></div>
+      <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" style="display:block;margin-top:.7rem;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-decoration:none;background:var(--ig-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">📸 @ryns4u on Instagram</a>
+    </div>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.0!2d83.0065214!3d25.3281982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2f4ba3489f5f%3A0xeacee283d57c284!2sRYNS%20CLOTHING!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="RYNS Clothing Map">
+    </iframe>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="f-brand">RYNS<span>.</span></div>
+      <div class="f-tag">Premium clothing from the heart of Varanasi. Crafted with care, worn with pride.</div>
+      <div class="f-soc">
+        <a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank" class="f-sb f-ig" title="@ryns4u">📸</a>
+        <a href="https://maps.app.goo.gl/LyxThfH6MaF8bskQA" target="_blank" class="f-sb" title="Google Maps">🗺️</a>
+        <a href="tel:+918177097151" class="f-sb" title="Call">📞</a>
+      </div>
+    </div>
+    <div>
+      <div class="f-col-t">Navigate</div>
+      <ul class="f-links">
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#video">Brand Film</a></li>
+        <li><a href="#instagram">Instagram</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#store">Store Info</a></li>
+        <li><a href="#map">Find Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-t">Products</div>
+      <ul class="f-links">
+        <li><a href="#">Premium Cotton Tees</a></li>
+        <li><a href="#">Custom Print Orders</a></li>
+        <li><a href="#">Bulk Wholesale</a></li>
+        <li><a href="#">Relaxed Fit Range</a></li>
+        <li><a href="#">Classic Collection</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-col-t">Connect</div>
+      <ul class="f-links">
+        <li><a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank">📸 @ryns4u</a></li>
+        <li><a href="tel:+918177097151">📞 +91 81770 97151</a></li>
+        <li><a href="https://maps.app.goo.gl/LyxThfH6MaF8bskQA" target="_blank">🗺️ Google Maps</a></li>
+        <li><a href="#reviews">⭐ Write a Review</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 RYNS Clothing, Varanasi. All rights reserved.</span>
+    <span><a href="https://www.instagram.com/ryns4u?igsh=ZXYzbTJ4OWh1dmVo" target="_blank">@ryns4u</a> · <a href="https://maps.app.goo.gl/LyxThfH6MaF8bskQA" target="_blank">Google Maps</a> · Made with ♥ in Varanasi</span>
+  </div>
+</footer>
+
+<script>
+/* ── CURSOR ── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let cx=0,cy=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;cur.style.left=cx+'px';cur.style.top=cy+'px'});
+(function lerpRing(){rx+=(cx-rx)*.12;ry+=(cy-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerpRing)})();
+document.querySelectorAll('a,button,.prod-card,.rev-card,.ig-post,.sz').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='6px';cur.style.height='6px';ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(184,146,42,.5)'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='12px';cur.style.height='12px';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(17,18,16,.3)'});
+});
+
+/* ── SIZE PICKER ── */
+document.querySelectorAll('.prod-sizes').forEach(row=>{
+  row.querySelectorAll('.sz').forEach(sz=>{
+    sz.addEventListener('click',()=>{row.querySelectorAll('.sz').forEach(s=>s.classList.remove('act'));sz.classList.add('act')});
+  });
+});
+
+/* ── 3D PRODUCT CARD TILT ── */
+document.querySelectorAll('.prod-card,.rev-card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`perspective(800px) rotateX(${-y*10}deg) rotateY(${x*10}deg) translateY(-10px) scale(1.02)`;
+    c.style.boxShadow=`${x*25}px ${y*25}px 50px rgba(17,18,16,.14)`;
+  });
+  c.addEventListener('mouseleave',()=>{c.style.transform='';c.style.boxShadow=''});
+});
+
+/* ── VIDEO ── */
+function toggleVid(){const v=document.getElementById('mainVid');v.paused?v.play():v.pause()}
+
+/* ── SCROLL REVEAL ── */
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>io.observe(el));
+
+/* ── REVIEWS ── */
+const reviewsData=[
+  {t:"Product is so good material is very soft and easy to wash really like the t-shirt. RYNS clothing is a very good brand.",s:5,n:"Verified Customer",v:"Google Review",i:"V"},
+  {t:"RYNS Clothing in Varanasi is my go-to for both wholesale & retail t-shirts. Quality cotton, sharp custom printing, and fair pricing.",s:5,n:"Wholesale Buyer",v:"Google Review",i:"W"},
+  {t:"Perfect for someone who likes a clean, classy look. Totally worth the price — will definitely shop again.",s:5,n:"Happy Shopper",v:"Google Review",i:"H"},
+  {t:"RYNS clothing brands are best in providing relaxed, trendy and comfortable clothes, with best fabric quality and durability!",s:5,n:"Loyal Customer",v:"Google Review",i:"L"},
+  {t:"The product quality was okay, but the delivery took longer than promised and communication could have been better.",s:3,n:"Online Order",v:"Google Review",i:"O"}
+];
+let userRevs=[],starRating=0;
+
+function renderRevs(){
+  document.getElementById('revGrid').innerHTML=[...reviewsData,...userRevs].map((r,i)=>`
+    <div class="rev-card" style="animation-delay:${i*.07}s">
+      <div class="rev-stars">${'★'.repeat(r.s)}${'☆'.repeat(5-r.s)}</div>
+      <span class="rev-q">"</span>
+      <p class="rev-text">${r.t}</p>
+      <div class="rev-author">
+        <div class="rev-ava">${r.i}</div>
+        <div><div class="rev-name">${r.n}</div><div class="rev-via">${r.v}</div></div>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.rev-card').forEach(c=>{
+    c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(800px) rotateX(${-y*10}deg) rotateY(${x*10}deg) translateY(-8px)`;c.style.boxShadow=`${x*20}px ${y*20}px 40px rgba(17,18,16,.1)`});
+    c.addEventListener('mouseleave',()=>{c.style.transform='';c.style.boxShadow=''});
+  });
+}
+
+function setStar(v){starRating=v;document.querySelectorAll('.sp').forEach(s=>s.classList.toggle('on',+s.dataset.v<=v))}
+
+function submitReview(){
+  const n=document.getElementById('rName').value.trim(),t=document.getElementById('rText').value.trim();
+  if(!n||!t||!starRating){alert('Please enter your name, a review, and a star rating.');return;}
+  userRevs.push({t,s:starRating,n,v:'Visitor Review',i:n[0].toUpperCase()});
+  document.getElementById('rName').value='';document.getElementById('rText').value='';
+  setStar(0);starRating=0;renderRevs();
+  document.getElementById('reviews').scrollIntoView({behavior:'smooth'});
+}
+
+renderRevs();
+</script>
+</body>
+</html>
